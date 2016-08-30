@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:edit, :update, :destroy]
 
   # GET /products
   def index
@@ -13,6 +13,8 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
+    @product = Product.find(params[:id])
+    # Rails.logger.debug "My debug log"
   end
 
   # GET /products/new
