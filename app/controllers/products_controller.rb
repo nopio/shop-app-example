@@ -9,8 +9,20 @@ class ProductsController < ApplicationController
     else
       @products = Product.all.order('name DESC')
     end
+
+    ids = params[:ids]
+
   end
 
+  def update_total_cost
+    ids = params[:product_ids]
+    ids.inspect
+    total_cost = 0
+    Product.where(id: ids).each do |product|
+      total_cost += product.total_price
+    end
+    total_cost
+  end
   # GET /products/1
   def show
     @product = Product.find(params[:id])
