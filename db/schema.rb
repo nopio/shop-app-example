@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830211252) do
+ActiveRecord::Schema.define(version: 20160903204801) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -23,10 +23,24 @@ ActiveRecord::Schema.define(version: 20160830211252) do
     t.decimal  "price"
     t.string   "upc"
     t.integer  "category_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.float    "discount"
+    t.text     "locked_by_size"
+    t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.float    "discount"
-    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
 end

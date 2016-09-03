@@ -9,68 +9,27 @@
         </div>
         <%= submit_tag "Search", class: "btn btn-default" %>
     <% end %>
+
+    <%= link_to 'New Product', new_product_path, class: 'btn btn-info'%>
 </div>
 
-<%= form_tag update_total_cost_products_path do %>
-    <div class="row col-lg-6">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th class="col-md-2">Name</th>
-              <th class="col-md-1">Price</th>
-              <th class="col-md-2">Upc</th>
-              <th class="col-md-2">Category</th>
-              <th colspan="3" class="col-md-1"></th>
-            </tr>
-          </thead>
 
-          <tbody>
-            <% @products.each do |product| %>
-              <tr>
-                <td><%= check_box_tag "product_ids[]", product.id %></td>
-                <td><%= product.id %></td>
-                <td><%= product.name %></td>
-                <td><%= product.price %></td>
-                <td><%= product.upc %></td>
-                <td><%= product.category.name %></td>
-                <td><%= link_to 'Show', product, class: 'btn btn-xs btn-warning' %></td>
-                <td><%= link_to 'Edit', edit_product_path(product), class: 'btn btn-default btn-xs' %></td>
-                <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-    </div>
+<div class="row col-lg-6">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="col-md-3">Name</th>
+          <th class="col-md-1">Price</th>
+          <th class="col-md-2">Sizes</th>
+          <th class="col-md-1">Category</th>
+          <th class="col-md-1"></th>
+        </tr>
+      </thead>
 
-    <%= submit_tag "Count total cost", id: "submit_checkboxes" %>
-<% end %>
+      <tbody id="product_list">
+        <%= render "product_list" %>
+      </tbody>
+    </table>
+</div>
 
-Total cost:
 
-<%= text_field_tag :total_cost, '0', id: 'total_cost' %>
-
-<%= link_to 'New Product', new_product_path, class: 'btn btn-xs btn-info'%>
-
-<script>
-  $(document).ready(function(){
-      $('#submit_checkboxes').click(function(){
-          var ids = new Array();
-          $("input[name='product_ids[]']:checked").each(function(i) {
-              ids.push($(this).val());
-          });
-          $.ajax({
-              type: 'POST',
-              url: '/products/update_total_cost',
-              data: { ids: ids },
-
-              success:function(data){
-                  console.log(data);
-                  $('#total_cost').empty();
-                  $('#total_cost').val("fsfsd");
-              }
-          });
-      });
-  });
-</script>
