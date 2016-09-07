@@ -1,14 +1,14 @@
 <% @products.each do |product| %>
-    <tr>
-      <td><%= product.name %></td>
-      <td>$<%= product.price %></td>
-      <td>
-        <% [:s, :m, :l, :xl].each do |size| %>
-            <%= size %>
-            <%= check_box_tag "#{product.id}"+size.to_s, size, product.locked_by_size[size], class: "row_#{product.id}" %>
-        <% end %>
-      </td>
-      <td><%= product.category.name %></td>
-      <td><%= button_tag "Lock sizes", type: 'button', onclick: "lock_sizes(#{product.id})", class: 'btn btn-xs btn-warning'%></td>
-    </tr>
+  <tr>
+    <td><%= product.name %></td>
+    <td>$<%= product.price %></td>
+    <td>
+      <% [:s, :m, :l, :xl].each do |size| %>
+        <%= size %>
+        <%= check_box_tag "#{product.id}"+size.to_s, size, product.locked_by_size[size], class: "row_#{product.id}" %>
+      <% end %>
+    </td>
+    <td><%= product.category.name %></td>
+    <td><%= button_tag "Lock sizes", type: 'button', onclick: "lock_sizes(#{product.id})", class: 'btn btn-xs btn-warning' %></td>
+  </tr>
 <% end %>

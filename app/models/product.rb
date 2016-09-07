@@ -3,9 +3,6 @@ class Product < ApplicationRecord
 
   serialize :locked_by_size, Hash
 
-  validates :name, :upc, :price, presence: true
-
-
   before_create :set_locked_by_size
 
   def set_locked_by_size

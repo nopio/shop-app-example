@@ -1,35 +1,30 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Products</h1>
 
 <div class="row">
-    <%= form_tag(products_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
-        <div class="form-group">
-            <%= text_field_tag :search, params[:search], placeholder: "Search Products", class: "form-control" %>
-        </div>
-        <%= submit_tag "Search", class: "btn btn-default" %>
-    <% end %>
-
-    <%= link_to 'New Product', new_product_path, class: 'btn btn-info'%>
+  <%= form_tag(products_path, method: "get", id: "search-form", class: "navbar-form navbar-left") do %>
+      <div class="form-group">
+        <%= text_field_tag :search, params[:search], placeholder: "Search Products", class: "form-control" %>
+      </div>
+      <%= submit_tag "Search", class: "btn btn-default" %>
+  <% end %>
 </div>
 
-
 <div class="row col-lg-6">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="col-md-3">Name</th>
-          <th class="col-md-1">Price</th>
-          <th class="col-md-2">Sizes</th>
-          <th class="col-md-1">Category</th>
-          <th class="col-md-1"></th>
-        </tr>
-      </thead>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="col-md-3">Name</th>
+      <th class="col-md-1">Price</th>
+      <th class="col-md-2">Sizes</th>
+      <th class="col-md-1">Category</th>
+      <th class="col-md-1"></th>
+    </tr>
+    </thead>
 
-      <tbody id="product_list">
+    <tbody id="product_list">
         <%= render "product_list" %>
-      </tbody>
-    </table>
+    </tbody>
+  </table>
 </div>
 
 
